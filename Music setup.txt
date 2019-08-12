@@ -1,0 +1,85 @@
+#####################################################################
+#
+# Instruction Name  : My music setup v.1.0.3
+# Description       : Setup Music shared folder on Server Network information
+# Dependencies      : cifs-utils
+# Arguments         : None
+# Author            : Bruce E. Scott, 11 Aug 2019
+# Email             : bescott9944@gmail.com
+# Comment 1.        :v.1.0 script concept and building.. -bruce
+# Comment 2.        : Requires root/sudo privileges
+#
+#####################################################################
+# Copyright (C) 2019, Bruce E. Scott
+############################################
+#
+# Here is the process I used that I found on "Ask Ubuntu" web site and
+# edited for my use:
+#
+# This work's for me at the time of this writing:
+# How I setup my network shared Music folder in Linux
+# Here is the process I used that I found on "Ask Ubuntu" web site and edited for my use.
+# This process worked for me on my Linux network at boot time and is automatically loaded and loged
+# into the network shared folder on the server for my music...
+# The information is listed as is and in no way guaranteed to work on you setup or network or Linux Installation...
+#
+############################################
+#
+# Before we get started, we need to open a terminal: "Ctrl+Alt+ T" on most Ubuntu base Distro's...
+# We need to install some network utilities like this by typing the following...
+# NOTE: If you get a msg saying it already installed just cancel the operation by pressing "N" for no.:
+ sudo apt-get install cifs-utils
+ or
+ sudo apt install cifs-utils
+
+# Created a hidden text file called 'smbcredentials' in my home folder.
+# Now, "In Your Open Terminal" type the following:
+ echo >.smbcredentials
+
+# Change the permissions of the file to prevent unwanted access to your credentials:
+ chmod 600 ~/.smbcredentials
+
+# Now edit the newly created ".smbcredentials" file like this:
+ gedit or nano ~/.smbcredentials
+
+# Add this to the ".smbcredentials" (this was my remote samba user account details):
+ username=Your Login Name
+ password=Your Login Password
+
+# Save the file and close the editor...:
+
+# I created a folder in my /home/Your_folder_name/Music folder called "ServerMusic"..:
+# Now open Terminal again "Ctrl+Alt+ T", and change to the ~/music folder like this:
+# At the prompt type..
+ >$ cd ~/Music "or" ( cd /home/Your_folder_name/Music )
+
+# Now type this to make a new "ServerMusic" folder:
+ mkdir /home/Your_folder_name/Music/ServerMusic
+
+# We need to edit the "fstab" but we need to make a backup just in case something FooBars... 
+# Open a terminal and type this:
+ sudo cp /etc/fstab fstab.old
+
+# Now "hit enter"... Now you can type "ls /etc/fs*"...
+# Now you should have in the /etc directory a fstab and fstab.old files. If there we can continue..:
+
+# Now we need to edit the /etc/ fstab file:
+# Note: ( gedit is a GUI editor and nano is terminal based editor )
+ sudo ( gedit or nano ) /etc/fstab
+
+# Then added the following line below to the bottom of your fstab file:
+# This will be your network shared folder on your network being a NAS of Ubuntu Server.
+# You will need to know the IP address and the Shared Folders Name...:
+
+ //192.168.x.xxx/Music /home/your_folder/Music/ServerMusic cifs auto,credentials=/home/your_folder/.smbcredentials,iocharset=utf8
+
+Our line will look like the:
+ //192.168.1.102/starbase/Master_Music_Processed_Files /home/bruce/Music/ServerMusic cifs auto,credentials=/home/bruce/.smbcredentials,iocharset=utf8
+
+# Now save the "fstab" file and close the editor...
+# Now type in the terminal the following command to test to see if the new folder will be loaded automatically when the system boots:
+ sudo mount -a
+
+# After typing the mount -a command you should go back to a plain command prompt... If there is a error it will be displayed and you will have to fix it in the "fstab" or it will not work and the system will now boot to the desktop and the system will halt booting....
+Good luck and enjoy your new Music folder..... Bruce
+
