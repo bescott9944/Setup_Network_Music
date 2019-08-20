@@ -1,1 +1,6 @@
-
+On 8/19/19 I was advised by leon.p on the EzeeTalk Form that I need to add "nofail" to the
+option portion on the line that loads the network file path to the host system.
+After checking the Arch WiKi I found what this does if the server is not up the
+system will go ahead and prossess the FSTAB and continue booting.
+If happens that the server is not up running and later it is up, you will have to mount it manually
+with "sudo mount -a" command (without quotes) -Bruce
