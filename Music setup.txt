@@ -71,10 +71,10 @@
 # This will be your network shared folder on your network being a NAS of Ubuntu Server.
 # You will need to know the IP address and the Shared Folders Name...:
 
- //192.168.x.xxx/Music /home/your_folder/Music/ServerMusic cifs auto,credentials=/home/your_folder/.smbcredentials,iocharset=utf8
+ //192.168.x.xxx/Music /home/your_folder/Music/ServerMusic cifs nofail,auto,credentials=/home/your_folder/.smbcredentials,iocharset=utf8
 
 Our line will look like the:
- //192.168.1.102/starbase/Master_Music_Processed_Files /home/bruce/Music/ServerMusic cifs auto,credentials=/home/bruce/.smbcredentials,iocharset=utf8
+ //192.168.1.102/starbase/Master_Music_Processed_Files /home/bruce/Music/ServerMusic cifs nofail,auto,credentials=/home/bruce/.smbcredentials,iocharset=utf8
 
 # Now save the "fstab" file and close the editor...
 # Now type in the terminal the following command to test to see if the new folder will be loaded automatically when the system boots:
