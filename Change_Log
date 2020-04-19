@@ -4,3 +4,12 @@ After checking the Arch WiKi I found what this does if the server is not up the
 system will go ahead and prossess the FSTAB and continue booting.
 If happens that the server is not up running and later it is up, you will have to mount it manually
 with "sudo mount -a" command (without quotes) -Bruce
+
+On 4/18/2020 I added the statement that "Samba" is a dependent.
+I also added the below line to the instructions...
+
+---> What ever your Distro uses to install software <---
+ # These instructions work on Arch, Ubuntu, Debian, Solus, and other Linux Distros...
+ 
+ This was added just in case there was confusion on what installer to use... Use you Distro's Installer..
+ -Bruce
