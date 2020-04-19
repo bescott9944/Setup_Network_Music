@@ -2,7 +2,7 @@
 #
 # Instruction Name  : My music setup v.1.0.3
 # Description       : Setup Music shared folder on Server Network information
-# Dependencies      : cifs-utils
+# Dependencies      : cifs-utils, samba
 # Arguments         : None
 # Author            : Bruce E. Scott, 11 Aug 2019
 # Email             : bescott9944@gmail.com
@@ -31,6 +31,9 @@
  sudo apt-get install cifs-utils
  or
  sudo apt install cifs-utils
+ or
+ ---> Whatever your Distro uses to install software <---
+ # These instructions work on Arch, Ubuntu, Debian, Solus, and other Linux Distros...
 
 # Created a hidden text file called 'smbcredentials' in my home folder.
 # Now, "In Your Open Terminal" type the following:
